@@ -1,7 +1,21 @@
+import { addItem } from "@/services/inputbody";
 import { Button, Input } from "@nextui-org/react";
-import React from "react";
+import React, { useState } from "react";
 
-export const InputBody: React.FC = () => {
+interface IInputBodyProps {
+  items: string[];
+  setItems: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+export const InputBody: React.FC<IInputBodyProps> = (props) => {
+  const [inputValue, setInputValue] = useState<string>("");
+  const { items, setItems } = props;
+
+  const onClick = (): void => {
+    addItem(inputValue, items, setItems);
+    setInputValue("");
+  };
+
   return (
     <div className="mt-4 flex justify-center">
       <div className="w-2/3">
@@ -29,10 +43,13 @@ export const InputBody: React.FC = () => {
               "!cursor-text",
             ],
           }}
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onClear={() => setInputValue("")}
         />
       </div>
       <div className="ml-2 flex items-center">
-        <Button color="secondary" variant="bordered">
+        <Button color="secondary" variant="bordered" onClick={onClick}>
           追加
         </Button>
       </div>
