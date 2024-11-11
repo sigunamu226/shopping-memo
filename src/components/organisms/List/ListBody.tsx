@@ -23,6 +23,9 @@ export const ListBody: React.FC<IListBodyProps> = (props) => {
               isIconOnly
               color="danger"
               variant="bordered"
+              onClick={() => {
+                setItems(items.filter((_, i) => i !== index));
+              }}
             >
               <DeleteIcon />
             </Button>
