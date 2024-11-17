@@ -11,7 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import SharkImage from "@/assets/images/shark.jpg";
 import { useRouter } from "next/navigation";
-import { login } from "@/services/login";
+import { login } from "@/services/auth";
 import { auth } from "@/common/firebase";
 
 export default function Page(): JSX.Element {
