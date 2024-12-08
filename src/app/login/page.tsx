@@ -22,7 +22,7 @@ export default function Page(): JSX.Element {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        router.push("/list");
+        router.push("/todolist");
       }
     });
     return unsubscribe;
