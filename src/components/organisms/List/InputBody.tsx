@@ -1,18 +1,20 @@
-import { addItem } from "@/services/inputbody";
+import { save } from "@/services/todolist";
 import { Button, Input } from "@nextui-org/react";
+import { User } from "firebase/auth";
 import React, { useState } from "react";
 
 interface IInputBodyProps {
   items: string[];
   setItems: React.Dispatch<React.SetStateAction<string[]>>;
+  user: User;
 }
 
 export const InputBody: React.FC<IInputBodyProps> = (props) => {
   const [inputValue, setInputValue] = useState<string>("");
-  const { items, setItems } = props;
+  const { items, setItems, user } = props;
 
-  const onClick = (): void => {
-    addItem(inputValue, items, setItems);
+  const onClick = async (): Promise<void> => {
+    await save(inputValue, user.uid, items, setItems);
     setInputValue("");
   };
 
