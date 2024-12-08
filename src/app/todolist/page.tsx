@@ -1,16 +1,22 @@
 "use client";
 
+import { User } from "firebase/auth";
 import { auth } from "@/common/firebase";
 import { Header } from "@/components/organisms/Header";
 import { InputBody } from "@/components/organisms/List/InputBody";
 import { ListBody } from "@/components/organisms/List/ListBody";
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Page() {
+  const [user, setUser] = useState<User | null>(null);
   const [items, setItems] = useState<string[]>([]);
 
-  const user = useMemo(() => {
-    return auth.currentUser;
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe(); // クリーンアップ
   }, []);
 
   if (!user) {
