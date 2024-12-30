@@ -13,3 +13,12 @@ export const addItem = async (
   setItem([...items, inputValue], userId);
   setItems([...items, inputValue]);
 };
+
+export const deleteItem = async (
+  userId: string,
+  items: string[],
+  setItems: React.Dispatch<React.SetStateAction<string[]>>
+): Promise<void> => {
+  setItem(items, userId);
+  setItems(items);
+};

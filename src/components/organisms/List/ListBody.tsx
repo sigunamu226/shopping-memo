@@ -1,13 +1,24 @@
 import { DeleteIcon } from "@/assets/images/DeleteIcon";
+import { deleteItem } from "@/services/todolist";
 import { Button, Checkbox } from "@nextui-org/react";
+import { User } from "firebase/auth";
 
 interface IListBodyProps {
   items: string[];
   setItems: React.Dispatch<React.SetStateAction<string[]>>;
+  user: User;
 }
 
 export const ListBody: React.FC<IListBodyProps> = (props) => {
-  const { items, setItems } = props;
+  const { items, setItems, user } = props;
+
+  const onClick = async (index: number): Promise<void> => {
+    await deleteItem(
+      user.uid,
+      items.filter((_, i) => i !== index),
+      setItems
+    );
+  };
 
   return (
     <div className="mt-4 flex justify-center">
@@ -23,9 +34,7 @@ export const ListBody: React.FC<IListBodyProps> = (props) => {
               isIconOnly
               color="danger"
               variant="bordered"
-              onClick={() => {
-                setItems(items.filter((_, i) => i !== index));
-              }}
+              onClick={() => onClick(index)}
             >
               <DeleteIcon />
             </Button>

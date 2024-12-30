@@ -28,7 +28,7 @@ export default function Page() {
       <Header />
       <div className="container md:mx-auto">
         <InputBody items={items} setItems={setItems} user={user} />
-        <ListBody items={items} setItems={setItems} />
+        <ListBody items={items} setItems={setItems} user={user} />
       </div>
     </>
   );
