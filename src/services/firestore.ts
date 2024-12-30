@@ -1,7 +1,7 @@
 import { db } from "@/common/firebase";
 import { doc, setDoc } from "firebase/firestore";
 
-export const addItem = async (
+export const setItem = async (
   items: string[],
   userId: string
 ): Promise<void> => {
@@ -11,6 +11,6 @@ export const addItem = async (
       items: items,
     });
   } catch (e) {
-    console.error("Error adding document: ", e);
+    console.error("Error setting document: ", e);
   }
 };

@@ -1,8 +1,8 @@
-import { addItem } from "./firestore";
+import { setItem } from "./firestore";
 
 export const initializeItems = {};
 
-export const save = async (
+export const addItem = async (
   inputValue: string,
   userId: string,
   items: string[],
@@ -10,6 +10,6 @@ export const save = async (
 ): Promise<void> => {
   if (!inputValue) return;
 
-  addItem([...items, inputValue], userId);
+  setItem([...items, inputValue], userId);
   setItems([...items, inputValue]);
 };
