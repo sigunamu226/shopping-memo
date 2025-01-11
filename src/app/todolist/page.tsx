@@ -6,10 +6,11 @@ import { Header } from "@/components/organisms/Header";
 import { InputBody } from "@/components/organisms/List/InputBody";
 import { ListBody } from "@/components/organisms/List/ListBody";
 import { useEffect, useState } from "react";
+import { IItem } from "@/common/interfaces/items";
 
 export default function Page() {
   const [user, setUser] = useState<User | null>(null);
-  const [items, setItems] = useState<string[]>([]);
+  const [items, setItems] = useState<IItem[]>([]);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {

@@ -1,8 +1,9 @@
 import { db } from "@/common/firebase";
+import { IItem } from "@/common/interfaces/items";
 import { doc, setDoc } from "firebase/firestore";
 
 export const setItem = async (
-  items: string[],
+  items: IItem[],
   userId: string
 ): Promise<void> => {
   try {

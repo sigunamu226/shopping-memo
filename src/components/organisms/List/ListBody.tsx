@@ -1,11 +1,12 @@
 import { DeleteIcon } from "@/assets/images/DeleteIcon";
+import { IItem } from "@/common/interfaces/items";
 import { deleteItem } from "@/services/todolist";
 import { Button, Checkbox } from "@nextui-org/react";
 import { User } from "firebase/auth";
 
 interface IListBodyProps {
-  items: string[];
-  setItems: React.Dispatch<React.SetStateAction<string[]>>;
+  items: IItem[];
+  setItems: React.Dispatch<React.SetStateAction<IItem[]>>;
   user: User;
 }
 
@@ -28,7 +29,7 @@ export const ListBody: React.FC<IListBodyProps> = (props) => {
             key={index}
             className="flex bg-white/80 text-gray-800 p-3 rounded-md shadow-sm hover:shadow-md transition-shadow"
           >
-            <Checkbox>{item}</Checkbox>
+            <Checkbox>{item.name}</Checkbox>
             <Button
               className="ml-auto"
               isIconOnly

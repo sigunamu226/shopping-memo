@@ -1,11 +1,12 @@
+import { IItem } from "@/common/interfaces/items";
 import { addItem } from "@/services/todolist";
 import { Button, Input } from "@nextui-org/react";
 import { User } from "firebase/auth";
 import React, { useState } from "react";
 
 interface IInputBodyProps {
-  items: string[];
-  setItems: React.Dispatch<React.SetStateAction<string[]>>;
+  items: IItem[];
+  setItems: React.Dispatch<React.SetStateAction<IItem[]>>;
   user: User;
 }
 
