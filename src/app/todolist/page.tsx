@@ -7,6 +7,7 @@ import { InputBody } from "@/components/organisms/List/InputBody";
 import { ListBody } from "@/components/organisms/List/ListBody";
 import { useEffect, useState } from "react";
 import { IItem } from "@/common/interfaces/items";
+import { getItem } from "@/services/firestore";
 
 export default function Page() {
   const [user, setUser] = useState<User | null>(null);
@@ -19,6 +20,14 @@ export default function Page() {
 
     return () => unsubscribe(); // クリーンアップ
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      if (!user) return;
+      const data = await getItem(user.uid);
+      setItems(data);
+    })();
+  }, [user]);
 
   if (!user) {
     return <></>;
