@@ -2,8 +2,6 @@ import { v4 as uuidv4 } from "uuid";
 import { IItem } from "@/common/interfaces/items";
 import { setItem } from "./firestore";
 
-export const initializeItems = {};
-
 export const addItem = async (
   inputValue: string,
   userId: string,
