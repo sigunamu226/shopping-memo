@@ -20,6 +20,24 @@ export const addItem = async (
   setItems([...items, newItem]);
 };
 
+export const updateItem = async (
+  e: React.ChangeEvent<HTMLInputElement>,
+  itemId: string,
+  userId: string,
+  items: IItem[],
+  setItems: React.Dispatch<React.SetStateAction<IItem[]>>
+): Promise<void> => {
+  const newItems = items.map((item) => {
+    if (item.id === itemId) {
+      return { ...item, check: e.target.checked };
+    }
+    return item;
+  });
+
+  setItem(newItems, userId);
+  setItems(newItems);
+};
+
 export const deleteItem = async (
   userId: string,
   items: IItem[],

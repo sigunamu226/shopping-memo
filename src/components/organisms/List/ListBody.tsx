@@ -1,6 +1,6 @@
 import { DeleteIcon } from "@/assets/images/DeleteIcon";
 import { IItem } from "@/common/interfaces/items";
-import { deleteItem } from "@/services/todolist";
+import { deleteItem, updateItem } from "@/services/todolist";
 import { Button, Checkbox } from "@nextui-org/react";
 import { User } from "firebase/auth";
 
@@ -12,6 +12,13 @@ interface IListBodyProps {
 
 export const ListBody: React.FC<IListBodyProps> = (props) => {
   const { items, setItems, user } = props;
+
+  const onChange = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+    itemId: string
+  ): Promise<void> => {
+    await updateItem(e, itemId, user.uid, items, setItems);
+  };
 
   const onClick = async (index: number): Promise<void> => {
     await deleteItem(
@@ -29,7 +36,12 @@ export const ListBody: React.FC<IListBodyProps> = (props) => {
             key={index}
             className="flex bg-white/80 text-gray-800 p-3 rounded-md shadow-sm hover:shadow-md transition-shadow"
           >
-            <Checkbox>{item.name}</Checkbox>
+            <Checkbox
+              isSelected={item.check}
+              onChange={(e) => onChange(e, item.id)}
+            >
+              {item.name}
+            </Checkbox>
             <Button
               className="ml-auto"
               isIconOnly
