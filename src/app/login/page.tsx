@@ -33,7 +33,7 @@ export default function Page(): JSX.Element {
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-svh">
       <div className="h-full flex justify-center items-center">
         <Card className="p-6 md:p-12">
           <CardHeader className="justify-center">

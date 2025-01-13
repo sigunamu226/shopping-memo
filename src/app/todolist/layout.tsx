@@ -20,5 +20,5 @@ export default function Layout({
     return unsubscribe;
   }, [router]);
 
-  return <>{children}</>;
+  return <div className="h-svh">{children}</div>;
 }
