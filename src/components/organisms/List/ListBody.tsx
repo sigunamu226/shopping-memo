@@ -30,7 +30,7 @@ export const ListBody: React.FC<IListBodyProps> = (props) => {
 
   return (
     <div className="mt-4 flex justify-center">
-      <ul className="w-full max-w-2xl max-h-[calc(100vh-10rem)] rounded-lg p-4 space-y-3 overflow-y-auto">
+      <ul className="w-full max-w-2xl max-h-[calc(100vh-15rem)] md:max-h-[calc(100vh-10rem)] rounded-lg p-4 space-y-3 overflow-y-auto">
         {items.map((item, index) => (
           <li
             key={index}
