@@ -14,6 +14,10 @@ export const InputBody: React.FC<IInputBodyProps> = (props) => {
   const [inputValue, setInputValue] = useState<string>("");
   const { items, setItems, user } = props;
 
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setInputValue(e.target.value);
+  };
+
   const onClick = async (): Promise<void> => {
     await addItem(inputValue, user.uid, items, setItems);
     setInputValue("");
@@ -47,7 +51,7 @@ export const InputBody: React.FC<IInputBodyProps> = (props) => {
             ],
           }}
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={onChange}
           onClear={() => setInputValue("")}
         />
       </div>
