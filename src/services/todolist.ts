@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 import { IItem } from "@/common/interfaces/items";
 import { setItem } from "./firestore";
 import { addItemValidation } from "@/validations/todolist";
+import { Timestamp } from "firebase/firestore";
 
 export const addItem = async (
   inputValue: string,
@@ -16,6 +17,7 @@ export const addItem = async (
     id: uuidv4(),
     name: inputValue,
     check: false,
+    checkedAt: null,
   };
 
   setItem([...items, newItem], userId);
@@ -31,7 +33,11 @@ export const updateItem = async (
 ): Promise<void> => {
   const newItems = items.map((item) => {
     if (item.id === itemId) {
-      return { ...item, check: e.target.checked };
+      return {
+        ...item,
+        check: e.target.checked,
+        checkedAt: e.target.checked ? Timestamp.now() : null,
+      };
     }
     return item;
   });
