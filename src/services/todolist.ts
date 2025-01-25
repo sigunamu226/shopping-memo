@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { IItem } from "@/common/interfaces/items";
 import { setItem } from "./firestore";
+import { addItemValidation } from "@/validations/todolist";
 
 export const addItem = async (
   inputValue: string,
@@ -8,7 +9,8 @@ export const addItem = async (
   items: IItem[],
   setItems: React.Dispatch<React.SetStateAction<IItem[]>>
 ): Promise<void> => {
-  if (!inputValue) return;
+  const validationCheck = addItemValidation(inputValue, items);
+  if (!validationCheck) return;
 
   const newItem: IItem = {
     id: uuidv4(),
