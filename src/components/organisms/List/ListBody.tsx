@@ -1,6 +1,6 @@
 import { DeleteIcon } from "@/assets/images/DeleteIcon";
 import { IItem } from "@/common/interfaces/items";
-import { deleteItem, updateItem } from "@/services/todolist";
+import { deleteItem, updateItem } from "@/services/itemlist";
 import { Button, Checkbox } from "@nextui-org/react";
 import { User } from "firebase/auth";
 

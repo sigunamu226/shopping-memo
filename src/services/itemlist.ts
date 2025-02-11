@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { IItem } from "@/common/interfaces/items";
 import { setItem } from "./firestore";
-import { addItemValidation } from "@/validations/todolist";
+import { addItemValidation } from "@/validations/itemlist";
 import { Timestamp } from "firebase/firestore";
 
 export const addItem = async (

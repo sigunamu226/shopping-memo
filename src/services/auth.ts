@@ -13,7 +13,7 @@ export const login = async (
   }
   try {
     await signInWithEmailAndPassword(auth, email, password);
-    router.push("/todolist");
+    router.push("/itemlist");
   } catch (error) {
     console.error("Error logging in:", error);
     alert("ログインに失敗しました");
