@@ -5,7 +5,11 @@ export const revalidate = 1;
 
 export async function GET() {
   try {
-    await removeOldCheckedItems();
+    const isRemovedOldCheckedItems = await removeOldCheckedItems();
+    if (!isRemovedOldCheckedItems) {
+      return NextResponse.json({ message: "No matching items" });
+    }
+
     return NextResponse.json({
       message: "Old checked items removed successfully",
     });

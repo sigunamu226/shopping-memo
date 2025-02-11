@@ -1,13 +1,12 @@
 import { firestoreAdmin } from "@/common/firebase_admin";
 import { IItem } from "@/common/interfaces/items";
 
-export const removeOldCheckedItems = async (): Promise<void> => {
+export const removeOldCheckedItems = async (): Promise<boolean> => {
   const usersRef = firestoreAdmin.collection("users");
   const snapshot = await usersRef.get();
 
   if (snapshot.empty) {
-    console.log("No matching documents.");
-    return;
+    return false;
   }
 
   const tasks: Promise<FirebaseFirestore.WriteResult>[] = [];
@@ -26,4 +25,6 @@ export const removeOldCheckedItems = async (): Promise<void> => {
   });
 
   await Promise.all(tasks);
+
+  return true;
 };
